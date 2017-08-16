@@ -1,0 +1,9 @@
+spring:
+  mail:
+    host: smtp.gov.pf
+    port: 25
+    protocol: smtp
+    defaultEncoding: UTF-8
+
+management:
+  security: enabled
