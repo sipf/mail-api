@@ -6,4 +6,5 @@ spring:
     defaultEncoding: UTF-8
 
 management:
-  security: enabled
+  security:
+    enabled: true
