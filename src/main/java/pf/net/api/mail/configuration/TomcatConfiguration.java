@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Configuration;
 public class TomcatConfiguration {
     @Bean
     public EmbeddedServletContainerCustomizer tomcatCustomizer() {
-        return (container)-> {
+        return container -> {
             if (container instanceof TomcatEmbeddedServletContainerFactory) {
                 ((TomcatEmbeddedServletContainerFactory) container)
-                        .addConnectorCustomizers((connector -> {
-                            connector.addUpgradeProtocol(new Http2Protocol());
-                        }));
+                        .addConnectorCustomizers((
+                                connector -> connector.addUpgradeProtocol(new Http2Protocol())
+                        ));
             }
         };
     }

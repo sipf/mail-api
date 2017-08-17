@@ -17,8 +17,8 @@ public class Email {
     private boolean isHtml;
 
     public Email() {
-        this.to = new ArrayList<String>();
-        this.cc = new ArrayList<String>();
+        this.to = new ArrayList<>();
+        this.cc = new ArrayList<>();
     }
 
     public Email(String from, String toList, String subject, String message) {
@@ -39,8 +39,7 @@ public class Email {
     }
 
     private String[] splitByComma(String toMultiple) {
-        String[] toSplit = toMultiple.split(",");
-        return toSplit;
+        return toMultiple.split(",");
     }
 
 }

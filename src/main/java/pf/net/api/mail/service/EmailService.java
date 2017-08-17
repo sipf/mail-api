@@ -17,6 +17,7 @@ public class EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
+    @Async
     public void send(Email eParams) {
 
         if (eParams.isHtml()) {
@@ -34,7 +35,6 @@ public class EmailService {
         }
     }
 
-    @Async
     private void sendHtmlMail(Email eParams) throws MessagingException {
 
         boolean isHtml = true;
@@ -47,14 +47,13 @@ public class EmailService {
         helper.setSubject(eParams.getSubject());
         helper.setText(eParams.getMessage(), isHtml);
 
-        if (eParams.getCc().size() > 0) {
+        if (eParams.getCc().isEmpty()) {
             helper.setCc(eParams.getCc().toArray(new String[eParams.getCc().size()]));
         }
 
         mailSender.send(message);
     }
 
-    @Async
     private void sendPlainTextMail(Email eParams) throws MessagingException {
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -66,7 +65,7 @@ public class EmailService {
         mailMessage.setSubject(eParams.getSubject());
         mailMessage.setText(eParams.getMessage());
 
-        if (eParams.getCc().size() > 0) {
+        if (eParams.getCc().isEmpty()) {
             mailMessage.setCc(eParams.getCc().toArray(new String[eParams.getCc().size()]));
         }
 
